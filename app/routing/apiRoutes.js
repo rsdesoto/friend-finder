@@ -4,69 +4,63 @@ var mysql = require("mysql");
 // 2. Your `server.js` file should require the basic
 // npm packages we've used in class: `express` and `path`.
 
-var express = require("express");
-var path = require("path");
+module.exports = function(app) {
+    // connection.query("SELECT * FROM friends", function(err, data) {
+    //     if (err) throw err;
+    //     console.log(data);
+    // });
 
-var app = express();
-var PORT = 3000;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-});
-
-var connection = mysql.createConnection({
-    host: "localhost",
-
-    // Your port; if not 3306
-    port: 8889,
-
-    // Your username
-    user: "root",
-
-    // Your password
-    password: "root",
-    database: "friend_db"
-});
-
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId + "\n");
-});
-
-// Basic route that sends the user first to the AJAX Page
-app.get("/api/friends", function(req, res) {
-    console.log(req.params);
-
-    connection.query("SELECT * FROM friends", function(err, data) {
-        console.log(data);
+    // Basic route that sends the user first to the AJAX Page
+    app.get("/api/friends", function(req, res) {
+        console.log("hello");
+        connection.query("SELECT * FROM friends", function(err, data) {
+            if (err) throw err;
+            console.log(data);
+            // console.log("Hell0");
+            res.render(data);
+        });
     });
-});
 
-// // - A GET Route to `/survey` which should display the survey page.
-// // - A default, catch-all route that leads to `home.html` which displays the home page.
+    var tester = {
+        name: "test",
+        friend_desc: "a friendly ghost",
+        q1: 2,
+        q2: 2,
+        q3: 2,
+        q4: 2,
+        q5: 2,
+        q6: 2,
+        q7: 2,
+        q8: 2,
+        q9: 2,
+        q10: 2
+    };
 
-// app.get("/survey", function(req, res) {
-//     console.log("survey");
-//     res.sendFile(path.join(__dirname, "../public/survey.html"));
-// });
-
-// // If no matching route is found default to home
-// app.get("*", function(req, res) {
-//     console.log("Hello");
-//     res.sendFile(path.join(__dirname, "../public/home.html"));
-// });
-
-// app.post("/api/friends", function(req, res) {
-//     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-//     // It will do this by sending out the value "true" have a table
-//     // req.body is available since we're using the body parsing middleware
-//     friendData.push(req.body);
-// });
+    // Basic route that sends the user first to the AJAX Page
+    app.post("/api/friends", function(req, res) {
+        connection.query(
+            "INSERT INTO friends (name, friend_desc,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10",
+            [
+                tester.name,
+                tester.friend_desc,
+                tester.q1,
+                tester.q2,
+                tester.q3,
+                tester.q4,
+                tester.q5,
+                tester.q6,
+                tester.q7,
+                tester.q8,
+                tester.q9,
+                tester.q10
+            ],
+            function(err, data) {
+                if (err) throw err;
+                console.log(data);
+            }
+        );
+    });
+};
 
 // 4. Your `apiRoutes.js` file should contain two routes:
 
