@@ -22,7 +22,7 @@ function makeObject() {
 
 function addUserToDB(userObj) {
   $.post("/api/friends", userObj, function(data) {
-    console.log(data);
+    console.log(data.affectedRows + " rows added");
   });
 }
 
@@ -37,25 +37,12 @@ $("#submitButton").on("click", function(event) {
   // create the newUser object
   var newUser = makeObject();
 
-  var compArr = getDB();
-
-  compareInfo(newUser, compArr);
+  // compare newUser to existing users and create modal
+  getDB(newUser, compDB);
 
   // add the newUser object to the underlying DB
   addUserToDB(newUser);
 });
-
-function compareInfo(newUser, userArray) {
-  var newAnswers = newUser.answers.split(",");
-  console.log(newAnswers);
-  for (var i = 0; i < userArray.length; i++) {
-    var compAnswers = userArray[i].answers.split(",");
-    console.log(compAnswers);
-  }
-  // placeholder
-  // compare newUser object to userArray objects -- return back the correct index value
-  // use index value to pull in information about the user as a modal
-}
 
 $("#getButton").on("click", function(event) {
   event.preventDefault();
@@ -64,27 +51,43 @@ $("#getButton").on("click", function(event) {
   });
 });
 
-function getDBAndCompare(newUser) {
+/**
+ *
+ * compare - each number: do abs(newAnswers - compAnswers)
+ * if this is below the starter value: return the new starter value and index
+ */
+function compDB(newUser, userArray, disp) {
+  var newAnswers = newUser.answers.split(",");
+
+  var smallestDist = 9999999;
+  var smallestIndex = 0;
+
+  for (var i = 0; i < userArray.length; i++) {
+    var compAnswers = userArray[i].answers.split(",");
+
+    // initialize the difference number;
+    var diff = 0;
+
+    for (var j = 0; j < newAnswers.length; j++) {
+      diff += Math.abs(parseInt(newAnswers[j]) - parseInt(compAnswers[j]));
+    }
+
+    if (diff < smallestDist) {
+      smallestDist = diff;
+      smallestIndex = i;
+    }
+  }
+  dispDB(userArray[smallestIndex]);
+  // return userArray[smallestIndex];
+}
+function getDB(newUser, compDB) {
   $.get("/api/friends", function(data) {
-    console.log(data);
-    // returns an array of objects
-    return data;
+    return compDB(newUser, data);
   });
 }
 
-function getDB() {
-  $.get("/api/friends", function(data) {
-    console.log(data);
-    // returns an array of objects
-    return data;
-  });
+// RD - placeholder --
+// this will be the logic to create the modal
+function dispDB(obj) {
+  console.log(obj);
 }
-
-// rd - placeholder - this works come back if you break everything
-// function getDB() {
-//   $.get("/api/friends", function(data) {
-//     console.log(data);
-//     // returns an array of objects
-//     return data;
-//   });
-// }
