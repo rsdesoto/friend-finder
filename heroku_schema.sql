@@ -1,12 +1,14 @@
 use tuy5ijgjkpzjovda;
 
+drop table friends;
+
 CREATE TABLE friends(
 id INTEGER(11) NOT NULL AUTO_INCREMENT,
 name VARCHAR(25),
 friend_desc VARCHAR(150),
 pic_url TEXT(500),
 answers VARCHAR(50),
-createdAt TIMESTAMP NOT NULL,
+createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (id)
 );
 
@@ -15,3 +17,5 @@ VALUES("bigfoot","likes long walks in the forest","data:image/jpeg;base64,/9j/4A
 ("mothman","light my fire, baby","https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mothman_statue_in_West_Virigina.jpg/1024px-Mothman_statue_in_West_Virigina.jpg","5,5,5,5,5,5,5,5,5,5"),
 ("jersey devil","[wordless screams]","https://upload.wikimedia.org/wikipedia/commons/1/13/Jersey_Devil_Philadelphia_Post_1909.jpg","1,1,1,1,1,1,1,1,1,1")
 ;
+
+select * from friends;

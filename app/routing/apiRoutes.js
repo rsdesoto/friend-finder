@@ -34,7 +34,7 @@ module.exports = function(app) {
     console.log(req.body);
 
     connection.query(
-      "INSERT INTO friends (name, friend_desc,pic_url,answers) VALUES(?,?,?)",
+      "INSERT INTO friends (name, friend_desc,pic_url,answers) VALUES(?,?,?,?)",
       [req.body.name, req.body.friend_desc, req.body.pic_url, req.body.answers],
       function(err, data) {
         if (err) throw err;
