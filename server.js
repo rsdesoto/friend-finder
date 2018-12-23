@@ -10,31 +10,43 @@ var PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+console.log(__dirname);
 
-require("./app/routing/htmlRoutes")(app);
+app.use(express.static(path.join(__dirname, "/app/public")));
+
 require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+  console.log("App listening on PORT " + PORT);
 });
 
-var connection = mysql.createConnection({
-    host: "localhost",
-
-    // Your port; if not 3306
-    port: 8889,
-
-    // Your username
-    user: "root",
-
-    // Your password
-    password: "root",
-    database: "friend_db"
-});
-
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId + "\n");
-});
+/** TO DO LIST/pseudocode:
+ * make sure i can read FROM the database
+ * make sure i can write TO the database
+ *
+ * 0. page load: show the survey and the entry points for name, photo, and quick description.
+ *    Data validation: if the entry points for name and desc are blank, don't let the user
+ *    continue
+ *
+ * 1. submit button:
+ *    a. log the user's information in the database -- use $.post() to create a SQL query with
+ *        name
+ *        desc
+ *        answers
+ *    b. pull the array of answers from the database. for any where the names are not identical,
+ *        compare the answers for each question. log the person with the lowest overall difference
+ *        array.forEach(obj,index){
+ *          can turn the obj.answers via .split(",") into an array and calc the difference for each point in the array
+ *          once this is done, find overall ans and store the lowest ans + index value
+ *        }
+ *
+ * 2. display match
+ *        pull name, desc, and photo on a modal
+ *
+ *
+ *
+ * 1.
+ */

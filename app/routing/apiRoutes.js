@@ -1,65 +1,54 @@
-var mysql = require("mysql");
 // 3. Your `htmlRoutes.js` file should include two routes:
+var mysql = require("mysql");
+
+var connection = require("./connection.js");
 
 // 2. Your `server.js` file should require the basic
 // npm packages we've used in class: `express` and `path`.
 
 module.exports = function(app) {
-    // connection.query("SELECT * FROM friends", function(err, data) {
-    //     if (err) throw err;
-    //     console.log(data);
-    // });
+  // connection.query("SELECT * FROM friends", function(err, data) {
+  //     if (err) throw err;
+  //     console.log(data);
+  // });
 
-    // Basic route that sends the user first to the AJAX Page
-    app.get("/api/friends", function(req, res) {
-        console.log("hello");
-        connection.query("SELECT * FROM friends", function(err, data) {
-            if (err) throw err;
-            console.log(data);
-            // console.log("Hell0");
-            res.render(data);
-        });
+  connection.query("SELECT name FROM friends WHERE id = 2", function(
+    err,
+    data
+  ) {
+    console.log(data[0].name + " connected");
+  });
+
+  // Basic route that sends the user first to the AJAX Page
+  app.get("/api/friends", function(req, res) {
+    console.log("hello");
+    connection.query("SELECT * FROM friends", function(err, data) {
+      if (err) throw err;
+      //   console.log(data);
+
+      res.json(data);
     });
+  });
 
-    var tester = {
-        name: "test",
-        friend_desc: "a friendly ghost",
-        q1: 2,
-        q2: 2,
-        q3: 2,
-        q4: 2,
-        q5: 2,
-        q6: 2,
-        q7: 2,
-        q8: 2,
-        q9: 2,
-        q10: 2
-    };
+  // INSERT INTO friends (name,friend_desc,answers)
+  // VALUES("bigfoot","likes long walks in the forest","4,4,4,4,4,4,4,4,4,4"),
+  // ("mothman","light my fire, baby","5,5,5,5,5,5,5,5,5,5"),
+  // ("jersey devil","[wordless screams]","1,1,1,1,1,1,1,1,1,1")
 
-    // Basic route that sends the user first to the AJAX Page
-    app.post("/api/friends", function(req, res) {
-        connection.query(
-            "INSERT INTO friends (name, friend_desc,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10",
-            [
-                tester.name,
-                tester.friend_desc,
-                tester.q1,
-                tester.q2,
-                tester.q3,
-                tester.q4,
-                tester.q5,
-                tester.q6,
-                tester.q7,
-                tester.q8,
-                tester.q9,
-                tester.q10
-            ],
-            function(err, data) {
-                if (err) throw err;
-                console.log(data);
-            }
-        );
-    });
+  app.post("/api/friends", function(req, res) {
+    console.log(req.body);
+
+    connection.query(
+      "INSERT INTO friends (name, friend_desc,answers) VALUES(?,?,?)",
+      [req.body.name, req.body.friend_desc, req.body.answers],
+      function(err, data) {
+        if (err) throw err;
+        console.log(data);
+
+        res.json(data);
+      }
+    );
+  });
 };
 
 // 4. Your `apiRoutes.js` file should contain two routes:
