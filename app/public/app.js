@@ -44,14 +44,42 @@ function addUserToDB(userObj) {
 $("#submitButton").on("click", function(event) {
   event.preventDefault();
 
-  // create the newUser object
-  var newUser = makeObject();
+  // data validation: make sure survey is answered
 
-  // compare newUser to existing users and create modal
-  getDB(newUser, compDB);
+  var surveyAnswered = true;
 
-  // add the newUser object to the underlying DB
-  addUserToDB(newUser);
+  for (var i = 0; i < 11; i++) {
+    if ($("#q" + i).val() === null) {
+      surveyAnswered = false;
+    }
+  }
+
+  if (!surveyAnswered) {
+    alert("Please answer the survey!");
+  }
+  // data validation: enter information
+  else if (
+    $("#name")
+      .val()
+      .trim() === "" ||
+    $("#desc")
+      .val()
+      .trim() === "" ||
+    $("#photo")
+      .val()
+      .trim() === ""
+  ) {
+    alert("Please insert information about yourself!!");
+  } else {
+    // create the newUser object
+    var newUser = makeObject();
+
+    // compare newUser to existing users and create modal
+    getDB(newUser, compDB);
+
+    // add the newUser object to the underlying DB
+    addUserToDB(newUser);
+  }
 });
 
 $("#getButton").on("click", function(event) {

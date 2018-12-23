@@ -31,6 +31,11 @@
             Please enter your name, a one-sentence description of yourself, and
             a link to a recent photo.
           </p>
+
+          <p>
+            Once you have submitted your questionnaire, your ideal cryptid
+            companion will be revealed to you.
+          </p>
         </div>
       </div>
 
@@ -50,19 +55,31 @@
           </div>
         </div>
 
+        <br />
+        <div class="row">
+          <div class="col s12 center-align instructions">
+            <p>
+              Each question has 5 options. Option 1 stands for "strongly
+              disagree". Option 5 stands for "strongly agree".
+            </p>
+          </div>
+        </div>
+
         <div class="row">
           <div class="input-field col s6">
+            <p class="q">I like long walks on the beach.</p>
             <select id="q1">
               <option value="" disabled selected>Choose your option</option>
-              <option value="1">Option 1</option>
+              <option value="1">Option 1 - strongly disagree</option>
               <option value="2">Option 2</option>
               <option value="3">Option 3</option>
               <option value="4">Option 4</option>
-              <option value="5">Option 5</option>
+              <option value="5">Option 5 - strongly agree</option>
             </select>
             <label>Question 1</label>
           </div>
           <div class="input-field col s6">
+            <p class="q">I like bright lights and excitement!</p>
             <select id="q2">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -76,6 +93,7 @@
         </div>
         <div class="row">
           <div class="input-field col s6">
+            <p class="q">PEOPLE SOMETIMES TELL ME I'M VERY LOUD.</p>
             <select id="q3">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -87,6 +105,7 @@
             <label>Question 3</label>
           </div>
           <div class="input-field col s6">
+            <p class="q">I love to be the center of attention!</p>
             <select id="q4">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -101,6 +120,7 @@
 
         <div class="row">
           <div class="input-field col s6">
+            <p class="q">I'm adventurous and fun-loving.</p>
             <select id="q5">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -112,6 +132,7 @@
             <label>Question 5</label>
           </div>
           <div class="input-field col s6">
+            <p class="q">I love to tell a good story!</p>
             <select id="q6">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -126,6 +147,10 @@
 
         <div class="row">
           <div class="input-field col s6">
+            <p class="q">
+              I love sailing and surfing and cruises -- anything where I'm near
+              the water!
+            </p>
             <select id="q7">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -137,6 +162,7 @@
             <label>Question 7</label>
           </div>
           <div class="input-field col s6">
+            <p class="q">I'm a bit of a foodie.</p>
             <select id="q8">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -151,6 +177,9 @@
 
         <div class="row">
           <div class="input-field col s6">
+            <p class="q">
+              I can be shy, but once you get to know me, I'm a friend for life.
+            </p>
             <select id="q9">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -162,6 +191,7 @@
             <label>Question 9</label>
           </div>
           <div class="input-field col s6">
+            <p class="q">I prefer a quiet night in over a wild night out.</p>
             <select id="q10">
               <option value="" disabled selected>Choose your option</option>
               <option value="1">Option 1</option>
@@ -173,9 +203,14 @@
             <label>Question 10</label>
           </div>
         </div>
-
-        <input type="submit" value="Submit" id="submitButton" />
-        <input type="submit" value="GetInfo" id="getButton" />
+        <div class="button-div center-align">
+          <a
+            class="button-shape amber accent-3 waves-effect waves-light btn-large"
+            id="submitButton"
+            >Find your Friend...</a
+          >
+        </div>
+        <!-- <input type="submit" value="Submit" id="submitButton" /> -->
       </form>
     </div>
   </body>

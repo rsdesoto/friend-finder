@@ -1,6 +1,6 @@
 .img-title {
   font-size: 120px;
-  text-shadow: 0 0 15px #f1f442;
+  text-shadow: 0 0 20px #ffc400;
   position: absolute;
   top: 20%;
   left: 50%;
@@ -16,4 +16,12 @@
 
 .instructions {
   background-color: #e5e5e5;
+}
+
+.q {
+  font-weight: bold;
+}
+
+.button-div {
+  margin-bottom: 50px;
 }
