@@ -14,8 +14,14 @@ function makeObject() {
 
   fName = $("#name").val();
   fDesc = $("#desc").val();
+  fPic = $("#photo").val();
 
-  var newUser = { name: fName, friend_desc: fDesc, answers: answerStr };
+  var newUser = {
+    name: fName,
+    friend_desc: fDesc,
+    pic_url: fPic,
+    answers: answerStr
+  };
 
   return newUser;
 }

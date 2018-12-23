@@ -30,17 +30,12 @@ module.exports = function(app) {
     });
   });
 
-  // INSERT INTO friends (name,friend_desc,answers)
-  // VALUES("bigfoot","likes long walks in the forest","4,4,4,4,4,4,4,4,4,4"),
-  // ("mothman","light my fire, baby","5,5,5,5,5,5,5,5,5,5"),
-  // ("jersey devil","[wordless screams]","1,1,1,1,1,1,1,1,1,1")
-
   app.post("/api/friends", function(req, res) {
     console.log(req.body);
 
     connection.query(
-      "INSERT INTO friends (name, friend_desc,answers) VALUES(?,?,?)",
-      [req.body.name, req.body.friend_desc, req.body.answers],
+      "INSERT INTO friends (name, friend_desc,pic_url,answers) VALUES(?,?,?)",
+      [req.body.name, req.body.friend_desc, req.body.pic_url, req.body.answers],
       function(err, data) {
         if (err) throw err;
         console.log(data);
