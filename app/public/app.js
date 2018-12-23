@@ -96,4 +96,5 @@ function getDB(newUser, compDB) {
 // this will be the logic to create the modal
 function dispDB(obj) {
   console.log(obj);
+  alert(obj.name + " " + obj.desc);
 }
