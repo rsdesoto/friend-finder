@@ -1,0 +1,19 @@
+.img-title {
+  font-size: 120px;
+  text-shadow: 0 0 15px #f1f442;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.img-holder {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.instructions {
+  background-color: #e5e5e5;
+}

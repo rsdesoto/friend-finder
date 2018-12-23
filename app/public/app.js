@@ -1,3 +1,7 @@
+$(document).ready(function() {
+  $("select").formSelect();
+});
+
 console.log("hello");
 
 function makeObject() {
@@ -62,7 +66,8 @@ $("#getButton").on("click", function(event) {
  * compare - each number: do abs(newAnswers - compAnswers)
  * if this is below the starter value: return the new starter value and index
  */
-function compDB(newUser, userArray, disp) {
+
+function compDB(newUser, userArray) {
   var newAnswers = newUser.answers.split(",");
 
   var smallestDist = 9999999;
@@ -96,5 +101,5 @@ function getDB(newUser, compDB) {
 // this will be the logic to create the modal
 function dispDB(obj) {
   console.log(obj);
-  alert(obj.name + " " + obj.desc);
+  alert(obj.name + " " + obj.friend_desc);
 }
