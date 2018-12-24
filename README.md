@@ -8,19 +8,19 @@ Are you lonely? Do you wish you had an undead ghoulfriend to share eternity with
 
 Navigate to the [home page](https://best-cryptid-friend-finder.herokuapp.com/). Feast your eyes upon the fearsome body of the Mongolian Death Worm; enter the app at your own peril.
 
-[ illustration goes here ]
+![Homepage](https://raw.githubusercontent.com/rsdesoto/friend-finder/master/readme_docs/homepage.png)
 
 Upon entering the survey, enter your name, a brief description, and a link to a recent photo.
 
-[ illustration goes here ]
+![Demographics](https://raw.githubusercontent.com/rsdesoto/friend-finder/master/readme_docs/name.png)
 
 Fill the survey out. Be honest!
 
-[ illustration goes here ]
+![Survey](https://raw.githubusercontent.com/rsdesoto/friend-finder/master/readme_docs/survey.png)
 
 When you have completed your survey, click on the "Find a Friend..." button to receive your truest companion.
 
-[ illustration goes here ]
+![Results](https://raw.githubusercontent.com/rsdesoto/friend-finder/master/readme_docs/results.png)
 
 ## Credit
 
@@ -31,7 +31,7 @@ Cryptid illustrations:
 - jersey devil - [Wikipedia article about the Jersey Devil](https://en.wikipedia.org/wiki/Jersey_Devil)
 - [kraken] - [Wikipedia article about the kraken](https://en.wikipedia.org/wiki/Kraken)
 - [mothman] - c-c-c-c-combo breaker! [Chicago Reader article on Rich Jones's "Mothman" track](https://www.chicagoreader.com/chicago/rich-jones-mothman-moth-man-bat-creature-rap/Content?oid=33074997)
-- tsuchinoko - [Wikipedia article about tsuchinokos](https://en.wikipedia.org/wiki/Tsuchinoko)
+- tsuchinoko - [Wikipedia article about tsuchinoko](https://en.wikipedia.org/wiki/Tsuchinoko)
 
 Homepage and survey page art:
 
@@ -40,4 +40,4 @@ Homepage and survey page art:
 
 ## Contact
 
-If you have any questions or run into any bugs, contact me at ry.e.desoto@gmail.com
+If you have any questions, run into any bugs, or meet Bigfoot for coffee and want to talk it out, contact me at ry.e.desoto@gmail.com

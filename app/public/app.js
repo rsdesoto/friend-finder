@@ -1,13 +1,27 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////// INITIALIZE JQUERY FUNCTIONALITY ////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Initialize the selection dropdowns
+ */
 $(document).ready(function() {
   $("select").formSelect();
 });
 
+/**
+ * Initialize the modals
+ */
 $(document).ready(function() {
   $(".modal").modal();
 });
 
-console.log("hello");
+c;
 
+/**
+ * Used for sending a new user into the database. This collects the information from the survey form and generates
+ * an object with the new user's name, description, picture, and answer string
+ */
 function makeObject() {
   var answerStr = "";
 
@@ -34,6 +48,11 @@ function makeObject() {
   return newUser;
 }
 
+/**
+ * Once an object has been created with the new survey taker's information, post this information into the underlying
+ * data tables that feed into the app.
+ * @param {object} userObj
+ */
 function addUserToDB(userObj) {
   $.post("/api/friends", userObj, function(data) {
     console.log(data.affectedRows + " rows added");
@@ -41,15 +60,82 @@ function addUserToDB(userObj) {
 }
 
 /**
- * on submit -- 1. log the user's information (addUserToDB)
- *              2. get all previous answers and compare to user (getUser and compareUser)
- *              3. post new user
+ * Calls comparison function, passing in the newUser object.
+ * @param {object} newUser
+ * @param {function} compDB
+ */
+function getDB(newUser, compDB) {
+  $.get("/api/friends", function(data) {
+    return compDB(newUser, data);
+  });
+}
+
+/**
+ * Takes the new user object and the array of previous user objects. For each of the previous user objects, compare the
+ * new user's answers to the previous user's answers. Return whoever is the closest match.
+ * @param {object} newUser
+ * @param {array} userArray
+ */
+function compDB(newUser, userArray) {
+  var newAnswers = newUser.answers.split(",");
+
+  // initialize the smallest distance and assumed index
+  var smallestDist = 9999999;
+  var smallestIndex = 0;
+
+  for (var i = 0; i < userArray.length; i++) {
+    var compAnswers = userArray[i].answers.split(",");
+
+    // initialize the difference number;
+    var diff = 0;
+
+    // compare each answer and find the overall absolute difference. add these differences to the "diff" variable.
+    for (var j = 0; j < newAnswers.length; j++) {
+      diff += Math.abs(parseInt(newAnswers[j]) - parseInt(compAnswers[j]));
+    }
+
+    if (diff < smallestDist) {
+      smallestDist = diff;
+      smallestIndex = i;
+    }
+  }
+  dispDB(userArray[smallestIndex]);
+}
+
+/**
+ * Using the returned data object of the previous user closest matching the current user, display each relevant piece
+ * of information in a modal.
+ * @param {object} obj
+ */
+function dispDB(obj) {
+  $("#match-name").html(obj.name);
+  $("#match-desc").html(obj.friend_desc);
+  $("#match-img").attr("src", obj.pic_url);
+  $("#matchModal").modal("open");
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////// CONTROL FUNCTIONS //////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Resets the inputs entered into the form upon closing the modal.
+ */
+$("#reset-button").on("click", function(event) {
+  event.preventDefault();
+
+  $("#input-form")[0].reset();
+});
+
+/**
+ * Does data validation to make sure the user entered information.
+ * If the user has entered information, creates an object (with makeObject()), compares the user with
+ * previous users (getDB()), and then adds the new user to the DB (addUserToDB())
  */
 $("#submitButton").on("click", function(event) {
   event.preventDefault();
 
   // data validation: make sure survey is answered
-
   var surveyAnswered = true;
 
   for (var i = 0; i < 11; i++) {
@@ -84,64 +170,4 @@ $("#submitButton").on("click", function(event) {
     // add the newUser object to the underlying DB
     addUserToDB(newUser);
   }
-});
-
-$("#getButton").on("click", function(event) {
-  event.preventDefault();
-  $.get("/api/friends", function(data) {
-    console.log(data);
-  });
-});
-
-/**
- *
- * compare - each number: do abs(newAnswers - compAnswers)
- * if this is below the starter value: return the new starter value and index
- */
-
-function compDB(newUser, userArray) {
-  var newAnswers = newUser.answers.split(",");
-
-  var smallestDist = 9999999;
-  var smallestIndex = 0;
-
-  for (var i = 0; i < userArray.length; i++) {
-    var compAnswers = userArray[i].answers.split(",");
-
-    // initialize the difference number;
-    var diff = 0;
-
-    for (var j = 0; j < newAnswers.length; j++) {
-      diff += Math.abs(parseInt(newAnswers[j]) - parseInt(compAnswers[j]));
-    }
-
-    if (diff < smallestDist) {
-      smallestDist = diff;
-      smallestIndex = i;
-    }
-  }
-  dispDB(userArray[smallestIndex]);
-  // return userArray[smallestIndex];
-}
-function getDB(newUser, compDB) {
-  $.get("/api/friends", function(data) {
-    return compDB(newUser, data);
-  });
-}
-
-// RD - placeholder --
-// this will be the logic to create the modal
-function dispDB(obj) {
-  console.log(obj);
-  // alert(obj.name + " " + obj.friend_desc);
-  $("#match-name").html(obj.name);
-  $("#match-desc").html(obj.friend_desc);
-  $("#match-img").attr("src", obj.pic_url);
-  $("#matchModal").modal("open");
-}
-
-$("#reset-button").on("click", function(event) {
-  event.preventDefault();
-
-  $("#input-form")[0].reset();
 });

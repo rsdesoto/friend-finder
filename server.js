@@ -1,16 +1,13 @@
-// 2. Your `server.js` file should require the basic
-// npm packages we've used in class: `express` and `path`.
+// Dependencies
 
 var express = require("express");
 var path = require("path");
-var mysql = require("mysql");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-console.log(__dirname);
 
 app.use(express.static(path.join(__dirname, "/app/public")));
 
@@ -45,8 +42,5 @@ app.listen(PORT, function() {
  *
  * 2. display match
  *        pull name, desc, and photo on a modal
- *
- *
- *
  * 1.
  */

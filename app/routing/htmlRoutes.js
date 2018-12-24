@@ -1,16 +1,20 @@
-// 3. Your `htmlRoutes.js` file should include two routes:
-
-// 2. Your `server.js` file should require the basic
-// npm packages we've used in class: `express` and `path`.
+// Dependencies
 var path = require("path");
-// - A GET Route to `/survey` which should display the survey page.
-// - A default, catch-all route that leads to `home.html` which displays the home page.
+
+/**
+ * Methods for export -
+ */
 module.exports = function(app) {
+  /**
+   * Direct users to the "survey" HTML file
+   */
   app.get("/survey", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/survey.html"));
   });
 
-  // If no matching route is found default to home
+  /**
+   * If not on the survey page, send users to the home page
+   */
   app.get("/*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
