@@ -2,6 +2,10 @@ $(document).ready(function() {
   $("select").formSelect();
 });
 
+$(document).ready(function() {
+  $(".modal").modal();
+});
+
 console.log("hello");
 
 function makeObject() {
@@ -129,5 +133,23 @@ function getDB(newUser, compDB) {
 // this will be the logic to create the modal
 function dispDB(obj) {
   console.log(obj);
-  alert(obj.name + " " + obj.friend_desc);
+  // alert(obj.name + " " + obj.friend_desc);
+  $("#match-name").html(obj.name);
+  $("#match-desc").html(obj.friend_desc);
+  $("#match-img").attr("src", obj.pic_url);
+  $("#matchModal").modal("open");
 }
+
+// <div id="matchModal" class="modal">
+//         <div class="modal-content">
+//           <h4>Your match is.........</h4>
+//           <h3 id="match-name">PLACEHOLDER</h3>
+//           <p id="match-desc">A bunch of text</p>
+//           <img id="match-img" src="./assets/survey_header.jpg" alt="match" />
+//         </div>
+//         <div class="modal-footer">
+//           <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+//             >Close</a
+//           >
+//         </div>
+//       </div>
