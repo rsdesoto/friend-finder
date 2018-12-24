@@ -142,19 +142,6 @@ function dispDB(obj) {
 
 $("#reset-button").on("click", function(event) {
   event.preventDefault();
-  $.reset();
-});
 
-// <div id="matchModal" class="modal">
-//         <div class="modal-content">
-//           <h4>Your match is.........</h4>
-//           <h3 id="match-name">PLACEHOLDER</h3>
-//           <p id="match-desc">A bunch of text</p>
-//           <img id="match-img" src="./assets/survey_header.jpg" alt="match" />
-//         </div>
-//         <div class="modal-footer">
-//           <a href="#!" class="modal-close waves-effect waves-green btn-flat"
-//             >Close</a
-//           >
-//         </div>
-//       </div>
+  $("#input-form")[0].reset();
+});
