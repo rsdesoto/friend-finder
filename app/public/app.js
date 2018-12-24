@@ -16,8 +16,6 @@ $(document).ready(function() {
   $(".modal").modal();
 });
 
-c;
-
 /**
  * Used for sending a new user into the database. This collects the information from the survey form and generates
  * an object with the new user's name, description, picture, and answer string
