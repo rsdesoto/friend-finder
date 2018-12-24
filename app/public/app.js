@@ -140,6 +140,11 @@ function dispDB(obj) {
   $("#matchModal").modal("open");
 }
 
+$("#reset-button").on("click", function(event) {
+  event.preventDefault();
+  $.reset();
+});
+
 // <div id="matchModal" class="modal">
 //         <div class="modal-content">
 //           <h4>Your match is.........</h4>
