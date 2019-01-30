@@ -29,8 +29,8 @@ Cryptid illustrations:
 - bigfoot - [Wikipedia article on the Patterson-Gimlin film](https://en.wikipedia.org/wiki/Patterson%E2%80%93Gimlin_film)
 - chupacabra - [Wikipedia article about chupacabras](https://en.wikipedia.org/wiki/Chupacabra)
 - jersey devil - [Wikipedia article about the Jersey Devil](https://en.wikipedia.org/wiki/Jersey_Devil)
-- [kraken] - [Wikipedia article about the kraken](https://en.wikipedia.org/wiki/Kraken)
-- [mothman] - c-c-c-c-combo breaker! [Chicago Reader article on Rich Jones's "Mothman" track](https://www.chicagoreader.com/chicago/rich-jones-mothman-moth-man-bat-creature-rap/Content?oid=33074997)
+- kraken - [Wikipedia article about the kraken](https://en.wikipedia.org/wiki/Kraken)
+- mothman - c-c-c-c-combo breaker! [Chicago Reader article on Rich Jones's "Mothman" track](https://www.chicagoreader.com/chicago/rich-jones-mothman-moth-man-bat-creature-rap/Content?oid=33074997)
 - tsuchinoko - [Wikipedia article about tsuchinoko](https://en.wikipedia.org/wiki/Tsuchinoko)
 
 Homepage and survey page art:
@@ -40,4 +40,4 @@ Homepage and survey page art:
 
 ## Contact
 
-If you have any questions, run into any bugs, or meet Bigfoot for coffee and want to talk it out, contact me at ry.e.desoto@gmail.com
+If you have any questions, run into any bugs, or meet Bigfoot for coffee and aren't sure if you want to call him back or not and want to talk it out with a pal, contact me at ry.e.desoto@gmail.com
